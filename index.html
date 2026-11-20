@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linkador</title>
+<script>
+  (function () {
+    try {
+      var q = new URLSearchParams(location.search).get("l");
+      var h = location.hash ? location.hash.slice(1) : "";
+      if ((q && q.length > 1) || (h && h.length > 1)) {
+        document.documentElement.setAttribute("data-mode", "view");
+        document.title = "\u200b";
+      }
+    } catch (_) {}
+  })();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script><style>/*! tailwindcss v4.3.5 | MIT License | https://tailwindcss.com */
+@layer properties;
+@layer theme, base, components, utilities;
+@layer theme {
+  :root, :host {
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+    --color-amber-100: oklch(96.2% 0.059 95.617);
+    --color-amber-200: oklch(92.4% 0.12 95.746);
+    --color-amber-400: oklch(82.8% 0.189 84.429);
+    --color-amber-500: oklch(76.9% 0.188 70.08);
+    --color-indigo-200: oklch(87% 0.065 274.039);
+    --color-indigo-400: oklch(67.3% 0.182 276.935);
+    --color-indigo-500: oklch(58.5% 0.233 277.117);
+    --color-rose-300: oklch(81% 0.117 11.638);
+    --color-rose-500: oklch(64.5% 0.246 16.439);
+    --color-slate-200: oklch(92.9% 0.013 255.508);
+    --color-slate-300: oklch(86.9% 0.022 252.894);
+    --color-slate-400: oklch(70.4% 0.04 256.788);
+    --color-slate-500: oklch(55.4% 0.046 257.417);
+    --color-slate-800: oklch(27.9% 0.041 260.031);
+    --color-white: #fff;
+    --spacing: 0.25rem;
+    --container-xs: 20rem;
+    --container-6xl: 72rem;
+    --text-xs: 0.75rem;
+    --text-xs--line-height: calc(1 / 0.75);
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --text-lg: 1.125rem;
+    --text-lg--line-height: calc(1.75 / 1.125);
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
+    --font-weight-normal: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-black: 900;
+    --tracking-tight: -0.025em;
+    --tracking-wider: 0.05em;
+    --leading-relaxed: 1.625;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --default-font-family: var(--font-sans);
+    --default-mono-font-family: var(--font-mono);
+  }
+}
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+  }
+  html, :host {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-family: var(--default-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji');
+    font-feature-settings: var(--default-font-feature-settings, normal);
+    font-variation-settings: var(--default-font-variation-settings, normal);
+    -webkit-tap-highlight-color: transparent;
+  }
+  hr {
+    height: 0;
+    color: inherit;
+    border-top-width: 1px;
+  }
+  abbr:where([title]) {
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  a {
+    color: inherit;
+    -webkit-text-decoration: inherit;
+    text-decoration: inherit;
+  }
+  b, strong {
+    font-weight: bolder;
+  }
+  code, kbd, samp, pre {
+    font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace);
+    font-feature-settings: var(--default-mono-font-feature-settings, normal);
+    font-variation-settings: var(--default-mono-font-variation-settings, normal);
+    font-size: 1em;
+  }
+  small {
+    font-size: 80%;
+  }
+  sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sub {
+    bottom: -0.25em;
+  }
+  sup {
+    top: -0.5em;
+  }
+  table {
+    text-indent: 0;
+    border-color: inherit;
+    border-collapse: collapse;
+  }
+  :-moz-focusring:where(:not(iframe)) {
+    outline: auto;
+  }
+  progress {
+    vertical-align: baseline;
+  }
+  summary {
+    display: list-item;
+  }
+  ol, ul, menu {
+    list-style: none;
+  }
+  img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    vertical-align: middle;
+  }
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  button, input, select, optgroup, textarea, ::file-selector-button {
+    font: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    border-radius: 0;
+    background-color: transparent;
+    opacity: 1;
+  }
+  :where(select:is([multiple], [size])) optgroup {
+    font-weight: bolder;
+  }
+  :where(select:is([multiple], [size])) optgroup option {
+    padding-inline-start: 20px;
+  }
+  ::file-selector-button {
+    margin-inline-end: 4px;
+  }
+  ::placeholder {
+    opacity: 1;
+  }
+  @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {
+    ::placeholder {
+      color: currentcolor;
+      @supports (color: color-mix(in lab, red, red)) {
+        color: color-mix(in oklab, currentcolor 50%, transparent);
+      }
+    }
+  }
+  textarea {
+    resize: vertical;
+  }
+  ::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  ::-webkit-date-and-time-value {
+    min-height: 1lh;
+    text-align: inherit;
+  }
+  ::-webkit-datetime-edit {
+    display: inline-flex;
+  }
+  ::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+  ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {
+    padding-block: 0;
+  }
+  ::-webkit-calendar-picker-indicator {
+    line-height: 1;
+  }
+  :-moz-ui-invalid {
+    box-shadow: none;
+  }
+  button, input:where([type='button'], [type='reset'], [type='submit']), ::file-selector-button {
+    appearance: button;
+  }
+  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+    height: auto;
+  }
+  [hidden]:where(:not([hidden='until-found'])) {
+    display: none !important;
+  }
+}
+@layer utilities {
+  .pointer-events-none {
+    pointer-events: none;
+  }
+  .fixed {
+    position: fixed;
+  }
+  .inset-0 {
+    inset: 0px;
+  }
+  .bottom-5 {
+    bottom: calc(var(--spacing) * 5);
+  }
+  .left-1\/2 {
+    left: calc(1 / 2 * 100%);
+  }
+  .z-50 {
+    z-index: 50;
+  }
+  .z-\[70\] {
+    z-index: 70;
+  }
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .mt-1 {
+    margin-top: var(--spacing);
+  }
+  .mt-2 {
+    margin-top: calc(var(--spacing) * 2);
+  }
+  .mt-3 {
+    margin-top: calc(var(--spacing) * 3);
+  }
+  .mt-4 {
+    margin-top: calc(var(--spacing) * 4);
+  }
+  .mt-6 {
+    margin-top: calc(var(--spacing) * 6);
+  }
+  .mb-1 {
+    margin-bottom: var(--spacing);
+  }
+  .mb-1\.5 {
+    margin-bottom: calc(var(--spacing) * 1.5);
+  }
+  .mb-2 {
+    margin-bottom: calc(var(--spacing) * 2);
+  }
+  .mb-3 {
+    margin-bottom: calc(var(--spacing) * 3);
+  }
+  .mb-4 {
+    margin-bottom: calc(var(--spacing) * 4);
+  }
+  .mb-5 {
+    margin-bottom: calc(var(--spacing) * 5);
+  }
+  .ml-auto {
+    margin-left: auto;
+  }
+  .block {
+    display: block;
+  }
+  .flex {
+    display: flex;
+  }
+  .grid {
+    display: grid;
+  }
+  .hidden {
+    display: none;
+  }
+  .h-1\.5 {
+    height: calc(var(--spacing) * 1.5);
+  }
+  .h-9 {
+    height: calc(var(--spacing) * 9);
+  }
+  .h-80 {
+    height: calc(var(--spacing) * 80);
+  }
+  .h-full {
+    height: 100%;
+  }
+  .min-h-\[1\.2rem\] {
+    min-height: 1.2rem;
+  }
+  .w-9 {
+    width: calc(var(--spacing) * 9);
+  }
+  .w-full {
+    width: 100%;
+  }
+  .max-w-6xl {
+    max-width: var(--container-6xl);
+  }
+  .max-w-xs {
+    max-width: var(--container-xs);
+  }
+  .min-w-\[140px\] {
+    min-width: 140px;
+  }
+  .flex-1 {
+    flex: 1;
+  }
+  .-translate-x-1\/2 {
+    --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .resize-y {
+    resize: vertical;
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .gap-1\.5 {
+    gap: calc(var(--spacing) * 1.5);
+  }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
+  .gap-3 {
+    gap: calc(var(--spacing) * 3);
+  }
+  .gap-6 {
+    gap: calc(var(--spacing) * 6);
+  }
+  :where(.space-y-2 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 2) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)));
+  }
+  :where(.space-y-3 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 3) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 3) * calc(1 - var(--tw-space-y-reverse)));
+  }
+  :where(.space-y-4 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)));
+  }
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  .rounded {
+    border-radius: 0.25rem;
+  }
+  .rounded-2xl {
+    border-radius: var(--radius-2xl);
+  }
+  .rounded-full {
+    border-radius: calc(infinity * 1px);
+  }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
+  }
+  .rounded-xl {
+    border-radius: var(--radius-xl);
+  }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+  .border-2 {
+    border-style: var(--tw-border-style);
+    border-width: 2px;
+  }
+  .border-t {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+  }
+  .border-amber-400\/30 {
+    border-color: color-mix(in srgb, oklch(82.8% 0.189 84.429) 30%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-amber-400) 30%, transparent);
+    }
+  }
+  .border-indigo-400\/30 {
+    border-color: color-mix(in srgb, oklch(67.3% 0.182 276.935) 30%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-indigo-400) 30%, transparent);
+    }
+  }
+  .border-slate-800 {
+    border-color: var(--color-slate-800);
+  }
+  .border-white\/10 {
+    border-color: color-mix(in srgb, #fff 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-white) 10%, transparent);
+    }
+  }
+  .border-t-indigo-400 {
+    border-top-color: var(--color-indigo-400);
+  }
+  .bg-\[\#0b0f1a\] {
+    background-color: #0b0f1a;
+  }
+  .bg-amber-500\/10 {
+    background-color: color-mix(in srgb, oklch(76.9% 0.188 70.08) 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-amber-500) 10%, transparent);
+    }
+  }
+  .bg-indigo-500 {
+    background-color: var(--color-indigo-500);
+  }
+  .bg-indigo-500\/10 {
+    background-color: color-mix(in srgb, oklch(58.5% 0.233 277.117) 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-indigo-500) 10%, transparent);
+    }
+  }
+  .bg-indigo-500\/15 {
+    background-color: color-mix(in srgb, oklch(58.5% 0.233 277.117) 15%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-indigo-500) 15%, transparent);
+    }
+  }
+  .bg-rose-500\/20 {
+    background-color: color-mix(in srgb, oklch(64.5% 0.246 16.439) 20%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-rose-500) 20%, transparent);
+    }
+  }
+  .bg-slate-800 {
+    background-color: var(--color-slate-800);
+  }
+  .bg-white\/5 {
+    background-color: color-mix(in srgb, #fff 5%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-white) 5%, transparent);
+    }
+  }
+  .bg-white\/10 {
+    background-color: color-mix(in srgb, #fff 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-white) 10%, transparent);
+    }
+  }
+  .p-3 {
+    padding: calc(var(--spacing) * 3);
+  }
+  .p-3\.5 {
+    padding: calc(var(--spacing) * 3.5);
+  }
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
+  }
+  .p-5 {
+    padding: calc(var(--spacing) * 5);
+  }
+  .px-2 {
+    padding-inline: calc(var(--spacing) * 2);
+  }
+  .px-2\.5 {
+    padding-inline: calc(var(--spacing) * 2.5);
+  }
+  .px-3 {
+    padding-inline: calc(var(--spacing) * 3);
+  }
+  .px-3\.5 {
+    padding-inline: calc(var(--spacing) * 3.5);
+  }
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
+  }
+  .px-5 {
+    padding-inline: calc(var(--spacing) * 5);
+  }
+  .py-0\.5 {
+    padding-block: calc(var(--spacing) * 0.5);
+  }
+  .py-1 {
+    padding-block: var(--spacing);
+  }
+  .py-1\.5 {
+    padding-block: calc(var(--spacing) * 1.5);
+  }
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
+  .py-2\.5 {
+    padding-block: calc(var(--spacing) * 2.5);
+  }
+  .py-6 {
+    padding-block: calc(var(--spacing) * 6);
+  }
+  .py-8 {
+    padding-block: calc(var(--spacing) * 8);
+  }
+  .pt-3 {
+    padding-top: calc(var(--spacing) * 3);
+  }
+  .text-center {
+    text-align: center;
+  }
+  .text-3xl {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
+  .text-lg {
+    font-size: var(--text-lg);
+    line-height: var(--tw-leading, var(--text-lg--line-height));
+  }
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .text-xs {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+  .text-\[11px\] {
+    font-size: 11px;
+  }
+  .text-\[13px\] {
+    font-size: 13px;
+  }
+  .leading-relaxed {
+    --tw-leading: var(--leading-relaxed);
+    line-height: var(--leading-relaxed);
+  }
+  .font-black {
+    --tw-font-weight: var(--font-weight-black);
+    font-weight: var(--font-weight-black);
+  }
+  .font-bold {
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+  }
+  .font-normal {
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
+  }
+  .font-semibold {
+    --tw-font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
+  }
+  .tracking-tight {
+    --tw-tracking: var(--tracking-tight);
+    letter-spacing: var(--tracking-tight);
+  }
+  .tracking-wider {
+    --tw-tracking: var(--tracking-wider);
+    letter-spacing: var(--tracking-wider);
+  }
+  .text-amber-100 {
+    color: var(--color-amber-100);
+  }
+  .text-amber-200\/90 {
+    color: color-mix(in srgb, oklch(92.4% 0.12 95.746) 90%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-amber-200) 90%, transparent);
+    }
+  }
+  .text-indigo-200 {
+    color: var(--color-indigo-200);
+  }
+  .text-indigo-400 {
+    color: var(--color-indigo-400);
+  }
+  .text-rose-300 {
+    color: var(--color-rose-300);
+  }
+  .text-slate-200 {
+    color: var(--color-slate-200);
+  }
+  .text-slate-300 {
+    color: var(--color-slate-300);
+  }
+  .text-slate-400 {
+    color: var(--color-slate-400);
+  }
+  .text-slate-500 {
+    color: var(--color-slate-500);
+  }
+  .text-white {
+    color: var(--color-white);
+  }
+  .normal-case {
+    text-transform: none;
+  }
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .opacity-0 {
+    opacity: 0%;
+  }
+  .shadow-2xl {
+    --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .select-none {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  @media (hover: hover) {
+    .hover\:bg-indigo-400:hover {
+      background-color: var(--color-indigo-400);
+    }
+    .hover\:bg-indigo-500\/25:hover {
+      background-color: color-mix(in srgb, oklch(58.5% 0.233 277.117) 25%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:bg-indigo-500\/25:hover {
+        background-color: color-mix(in oklab, var(--color-indigo-500) 25%, transparent);
+      }
+    }
+    .hover\:bg-rose-500\/30:hover {
+      background-color: color-mix(in srgb, oklch(64.5% 0.246 16.439) 30%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:bg-rose-500\/30:hover {
+        background-color: color-mix(in oklab, var(--color-rose-500) 30%, transparent);
+      }
+    }
+    .hover\:bg-white\/10:hover {
+      background-color: color-mix(in srgb, #fff 10%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:bg-white\/10:hover {
+        background-color: color-mix(in oklab, var(--color-white) 10%, transparent);
+      }
+    }
+    .hover\:bg-white\/20:hover {
+      background-color: color-mix(in srgb, #fff 20%, transparent);
+    }
+    @supports (color: color-mix(in lab, red, red)) {
+      .hover\:bg-white\/20:hover {
+        background-color: color-mix(in oklab, var(--color-white) 20%, transparent);
+      }
+    }
+  }
+  @media (width >= 64rem) {
+    .lg\:grid-cols-\[1\.1fr_\.9fr\] {
+      grid-template-columns: 1.1fr .9fr;
+    }
+  }
+}
+@property --tw-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-tracking {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-inset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-ring-inset {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-offset-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --tw-ring-offset-color {
+  syntax: "*";
+  inherits: false;
+  initial-value: #fff;
+}
+@property --tw-ring-offset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-translate-z: 0;
+      --tw-space-y-reverse: 0;
+      --tw-border-style: solid;
+      --tw-leading: initial;
+      --tw-font-weight: initial;
+      --tw-tracking: initial;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-color: initial;
+      --tw-shadow-alpha: 100%;
+      --tw-inset-shadow: 0 0 #0000;
+      --tw-inset-shadow-color: initial;
+      --tw-inset-shadow-alpha: 100%;
+      --tw-ring-color: initial;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-inset-ring-color: initial;
+      --tw-inset-ring-shadow: 0 0 #0000;
+      --tw-ring-inset: initial;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-offset-shadow: 0 0 #0000;
+    }
+  }
+}
+</style>
+<style>
+  html, body { min-height: 100%; }
+  body { background: radial-gradient(1100px 600px at 12% -10%, rgba(99,102,241,.20), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(236,72,153,.12), transparent 55%), #070a12; }
+  html[data-mode="view"] #app { display: none !important; }
+  html:not([data-mode="view"]) #viewer { display: none !important; }
+  .card { background: rgba(15,19,32,.78); border: 1px solid rgba(148,163,184,.16); }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .btn { transition: background .15s, transform .08s; cursor: pointer; }
+  .btn:active { transform: translateY(1px); }
+  .btn:disabled { opacity: .5; cursor: not-allowed; }
+  input[type=checkbox] { accent-color: #6366f1; width: 15px; height: 15px; cursor: pointer; }
+  .field { background: #0e1320; border: 1px solid rgba(148,163,184,.22); color: #e5e7eb; }
+  .field:focus, textarea:focus { outline: 2px solid #6366f1; outline-offset: 1px; }
+  .spin { animation: sp .8s linear infinite; } @keyframes sp { to { transform: rotate(360deg); } }
+  .drop { outline: 2px dashed #818cf8; outline-offset: -4px; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; } ::-webkit-scrollbar-thumb { background: #2a3245; border-radius: 9px; }
+</style>
+</head>
+<body class="text-slate-200 antialiased">
+
+<!-- ============ VIEWER ============ -->
+<div id="viewer" class="fixed inset-0 z-50 flex items-center justify-center p-5" style="background:#070a12">
+  <div id="vLoad" class="w-full max-w-xs text-center">
+    <div class="mx-auto mb-4 h-9 w-9 rounded-full border-2 border-indigo-400/30 border-t-indigo-400 spin"></div>
+    <div class="h-1.5 w-full overflow-hidden rounded-full bg-slate-800"><div id="vBar" class="h-full bg-indigo-500 transition-all" style="width:15%"></div></div>
+  </div>
+  <div id="vReady" class="hidden w-full text-center select-none">
+    <p class="text-lg font-semibold text-slate-200">Clique na tela para começar.</p>
+  </div>
+  <div id="vErr" class="hidden text-center">
+    <p class="text-lg font-semibold text-rose-300">Link inválido ou expirado.</p>
+    <p id="vErrTxt" class="mt-1 text-xs text-slate-500"></p>
+  </div>
+</div>
+
+<!-- ============ EDITOR ============ -->
+<main id="app" class="mx-auto max-w-6xl px-4 py-8">
+  <header class="mb-5 flex flex-wrap items-center justify-between gap-3">
+    <div>
+      <h1 class="text-3xl font-black tracking-tight text-white">Linka<span class="text-indigo-400">dor</span></h1>
+      <p class="mt-1 text-sm text-slate-400">Cola o HTML (50k+ linhas ok) → <b class="text-slate-200">Criar link direto</b>. Link direto → link maior → about:blank.</p>
+    </div>
+    <button id="dlApp" type="button" class="btn rounded-xl border border-indigo-400/30 bg-indigo-500/15 px-3.5 py-2 text-xs font-bold text-indigo-200 hover:bg-indigo-500/25">
+      ⬇ Baixar Linkador.html
+    </button>
+  </header>
+
+  <div id="arenaBanner" class="mb-5 rounded-2xl border border-amber-400/30 bg-amber-500/10 p-3.5 text-xs leading-relaxed text-amber-100 hidden">
+    <b>Prévia da Arena detectada:</b> os links saem em <span class="mono">data:text/html</span> — abrem <b>fora da Arena</b> e <b>terminam sempre em about:blank</b> (a aba com o link se apaga sozinha).
+    <span class="text-amber-200/90">
+      Quer um <b>Link direto curto</b> pra mandar pra alguém? Clique em <b>⬇ Baixar Linkador.html</b>, jogue no <b>Netlify Drop</b> ou <b>GitHub Pages</b> e cole a URL no campo abaixo.
+    </span>
+  </div>
+
+  <div class="grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
+    <section id="dropZone" class="card rounded-2xl p-4">
+      <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400">HTML</h2>
+          <span id="stats" class="mono rounded bg-white/5 px-2 py-0.5 text-xs text-slate-300">5 linhas • 205 B</span>
+        </div>
+        <div class="flex gap-1.5">
+          <input id="fileIn" type="file" accept=".html,.htm,.txt" class="hidden">
+          <button id="importBtn" class="btn rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs hover:bg-white/10">📂 Importar</button>
+          <button id="clearBtn" class="btn rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs hover:bg-white/10">Limpar</button>
+        </div>
+      </div>
+      <div id="bigNote" class="mb-2 hidden rounded-lg bg-indigo-500/10 px-3 py-2 text-xs text-indigo-200"></div>
+      <textarea id="code" spellcheck="false" class="mono h-80 w-full resize-y rounded-xl border border-slate-800 bg-[#0b0f1a] p-3 text-[13px] text-slate-200" placeholder="Cola o HTML ou arrasta um .html aqui">&lt;!DOCTYPE html&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;title&gt;Oi&lt;/title&gt;&lt;/head&gt;
+&lt;body style="font-family:sans-serif;display:grid;place-items:center;height:100vh;margin:0"&gt;
+&lt;h1&gt;Funcionou 🎉&lt;/h1&gt;
+&lt;/body&gt;&lt;/html&gt;</textarea>
+
+      <div class="mt-3 flex flex-wrap items-center gap-3">
+        <input id="name" class="field flex-1 min-w-[140px] rounded-lg px-3 py-2.5 text-sm" placeholder="Nome do link (opcional)">
+        <button id="create" class="btn rounded-lg bg-indigo-500 px-5 py-2.5 text-sm font-bold text-white hover:bg-indigo-400">Criar link direto</button>
+      </div>
+      <div class="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-slate-800"><div id="prog" class="h-full bg-indigo-500 transition-all" style="width:0%"></div></div>
+      <div id="st" class="mt-2 min-h-[1.2rem] text-xs text-slate-400"></div>
+    </section>
+
+    <section class="space-y-4">
+      <div class="card rounded-2xl p-4">
+        <label class="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-400">Link direto</label>
+        <div class="flex gap-2">
+          <input id="outShort" readonly="" class="field mono w-full rounded-lg px-3 py-2 text-xs" placeholder="—">
+          <button data-copy="outShort" class="btn rounded-lg bg-indigo-500 px-3 text-xs font-bold text-white hover:bg-indigo-400">Copiar</button>
+        </div>
+        <label class="mb-1 mt-4 block text-xs font-bold uppercase tracking-wider text-slate-400">Link maior <span id="longLen" class="font-normal normal-case text-slate-500"></span></label>
+        <div class="flex gap-2">
+          <input id="outLong" readonly="" class="field mono w-full rounded-lg px-3 py-2 text-xs" placeholder="—">
+          <button data-copy="outLong" class="btn rounded-lg bg-white/10 px-3 text-xs font-bold text-white hover:bg-white/20">Copiar</button>
+        </div>
+      </div>
+
+      <div class="card rounded-2xl p-4 space-y-3">
+        <div>
+          <h2 class="mb-1.5 text-xs font-bold uppercase tracking-wider text-slate-400">Disfarce do about:blank</h2>
+          <select id="mask" class="field w-full rounded-lg px-3 py-2 text-sm"><option value="0">Nenhum — about:blank puro</option><option value="1">Google Docs</option><option value="2">Google Classroom</option><option value="3">Google Drive</option><option value="4">Google Slides</option><option value="5">Google Sheets</option><option value="6">Desmos</option><option value="7">Khan Academy</option><option value="8">Personalizado…</option></select>
+          <div id="customBox" class="mt-2 hidden space-y-2">
+            <input id="cTitle" class="field w-full rounded-lg px-3 py-2 text-sm" placeholder="Título da aba">
+            <input id="cIcon" class="field w-full rounded-lg px-3 py-2 text-sm" placeholder="URL do favicon">
+          </div>
+        </div>
+        <div class="border-t border-white/10 pt-3">
+          <label class="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-400">URL do seu Linkador <span class="font-normal normal-case text-slate-500">(fora da Arena)</span></label>
+          <input id="hostUrl" class="field mono w-full rounded-lg px-3 py-2 text-xs" placeholder="Ex: https://meulinkador.netlify.app/">
+          <p class="mt-1 text-[11px] text-slate-500">Deixe vazio na Arena para usar <span class="mono">data:</span> no Link maior, ou cole aqui onde você hospedou o Linkador.html.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ EDITOR DE LINKS ============ -->
+  <section class="card mt-6 rounded-2xl p-4">
+    <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-slate-400">Meus links <span id="cnt" class="text-slate-500">(0)</span></h2>
+      <input id="search" class="field rounded-lg px-3 py-1.5 text-xs" placeholder="Buscar…">
+    </div>
+    <div class="mb-3 flex flex-wrap items-center gap-2 text-xs">
+      <label class="flex items-center gap-2 rounded-lg bg-white/5 px-2.5 py-1.5"><input id="selAll" type="checkbox"> Selecionar todos</label>
+      <button id="selNone" class="btn rounded-lg bg-white/5 px-2.5 py-1.5 hover:bg-white/10">Limpar seleção</button>
+      <button id="selInv" class="btn rounded-lg bg-white/5 px-2.5 py-1.5 hover:bg-white/10">Inverter</button>
+      <span id="selInfo" class="text-slate-500"></span>
+      <div class="ml-auto flex flex-wrap gap-2">
+        <button id="cpShort" class="btn rounded-lg bg-indigo-500 px-2.5 py-1.5 font-semibold text-white hover:bg-indigo-400">Copiar diretos</button>
+        <button id="cpLong" class="btn rounded-lg bg-white/10 px-2.5 py-1.5 font-semibold hover:bg-white/20">Copiar maiores</button>
+        <button id="cpBoth" class="btn rounded-lg bg-white/10 px-2.5 py-1.5 font-semibold hover:bg-white/20">Copiar ambos</button>
+        <button id="exp" class="btn rounded-lg bg-white/10 px-2.5 py-1.5 font-semibold hover:bg-white/20">Exportar .txt</button>
+        <button id="del" class="btn rounded-lg bg-rose-500/20 px-2.5 py-1.5 font-semibold text-rose-300 hover:bg-rose-500/30">Excluir</button>
+      </div>
+    </div>
+    <div id="list" class="space-y-2"></div>
+  </section>
+</main>
+
+<div id="toast" class="pointer-events-none fixed bottom-5 left-1/2 z-[70] -translate-x-1/2 rounded-xl bg-slate-800 px-4 py-2 text-sm opacity-0 shadow-2xl transition-opacity"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+function toast(m, bad){ const t=$("#toast"); t.textContent=m; t.style.color=bad?"#fca5a5":"#e5e7eb"; t.style.opacity="1"; clearTimeout(t._t); t._t=setTimeout(()=>t.style.opacity="0",2400); }
+const fmtB = n => n<1024?n+" B":n<1048576?(n/1024).toFixed(1)+" kB":(n/1048576).toFixed(2)+" MB";
+function lines(s){ if(!s) return 0; let c=1; for(let i=0;i<s.length;i++) if(s.charCodeAt(i)===10) c++; return c; }
+const cleanBase = () => location.href.split("#")[0].split("?")[0];
+function fetchT(url, opts={}, ms=30000){ const c=new AbortController(); const id=setTimeout(()=>c.abort(),ms); return fetch(url,Object.assign({},opts,{signal:c.signal})).finally(()=>clearTimeout(id)); }
+async function copyText(t){
+  try { await navigator.clipboard.writeText(t); return true; }
+  catch(_) { const a=document.createElement("textarea"); a.value=t; a.style.position="fixed"; a.style.opacity="0"; document.body.appendChild(a); a.select(); let ok=false; try{ok=document.execCommand("copy");}catch(_){} a.remove(); return ok; }
+}
+
+/* ---------- compressão ---------- */
+function toB64(u8){ const C=0x8000, p=[]; for(let i=0;i<u8.length;i+=C) p.push(String.fromCharCode.apply(null,u8.subarray(i,i+C))); return btoa(p.join("")).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); }
+function fromB64(t){ t=t.replace(/-/g,"+").replace(/_/g,"/"); while(t.length%4) t+="="; const s=atob(t), u=new Uint8Array(s.length); for(let i=0;i<s.length;i++) u[i]=s.charCodeAt(i); return u; }
+async function sp(u8, tr){ return new Uint8Array(await new Response(new Blob([u8]).stream().pipeThrough(tr)).arrayBuffer()); }
+const META = "\0LK1:";
+async function encodePayload(html, meta){
+  const packed = meta && (meta.t||meta.i) ? META+JSON.stringify(meta)+"\n"+html : html;
+  const raw = new TextEncoder().encode(packed);
+  if (typeof CompressionStream==="function"){ const c=await sp(raw,new CompressionStream("deflate-raw")); return {token:"z"+toB64(c), comp:c.length}; }
+  return {token:"r"+toB64(raw), comp:raw.length};
+}
+async function decodePayload(tok){
+  const u8=fromB64(tok.slice(1));
+  let text = tok[0]==="z" ? new TextDecoder().decode(await sp(u8,new DecompressionStream("deflate-raw"))) : new TextDecoder().decode(u8);
+  let meta=null;
+  if (text.startsWith(META)){ const nl=text.indexOf("\n"); try{meta=JSON.parse(text.slice(META.length,nl));}catch(_){} text=text.slice(nl+1); }
+  return {html:text, meta};
+}
+
+/* ---------- nuvem: vários serviços, blocos pequenos, requisições simples (sem preflight CORS) ---------- */
+const PROVIDERS = [
+  { code:"p", name:"pastes.dev", size:300000,
+    async put(c){ const r=await fetchT("https://api.pastes.dev/post",{method:"POST",headers:{"Content-Type":"text/plain"},body:c}); if(!r.ok) throw Error("HTTP "+r.status); const d=await r.json(); if(!d.key) throw Error("sem key"); return d.key; },
+    async get(id){ const r=await fetchT("https://api.pastes.dev/"+id); if(!r.ok) throw Error("HTTP "+r.status); return (await r.text()).trim(); } },
+  { code:"r", name:"paste.rs", size:300000,
+    async put(c){ const r=await fetchT("https://paste.rs/",{method:"POST",headers:{"Content-Type":"text/plain"},body:c}); if(r.status!==201) throw Error("HTTP "+r.status); const u=(await r.text()).trim(); const id=u.split("/").pop(); if(!id) throw Error("sem id"); return id; },
+    async get(id){ const r=await fetchT("https://paste.rs/"+id); if(!r.ok) throw Error("HTTP "+r.status); return (await r.text()).trim(); } },
+  { code:"d", name:"dpaste", size:200000,
+    async put(c){ const r=await fetchT("https://dpaste.com/api/v2/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:"expiry_days=365&syntax=text&content="+encodeURIComponent(c)}); if(!r.ok) throw Error("HTTP "+r.status); const u=(await r.text()).trim(); const id=u.replace(/\/+$/,"").split("/").pop(); if(!id) throw Error("sem id"); return id; },
+    async get(id){ const r=await fetchT("https://dpaste.com/"+id+".txt"); if(!r.ok) throw Error("HTTP "+r.status); return (await r.text()).trim(); } },
+  { code:"j", name:"superjsonblob", size:250000,
+    async put(c){ const r=await fetchT("https://superjsonblob.com/api/jsonBlob",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({d:c})}); if(!r.ok) throw Error("HTTP "+r.status); let id=""; try{id=(await r.json()).id||"";}catch(_){} if(!id) id=(r.headers.get("Location")||"").split("/").pop(); if(!id) throw Error("sem id"); return id; },
+    async get(id){ const r=await fetchT("https://superjsonblob.com/api/jsonBlob/"+id); if(!r.ok) throw Error("HTTP "+r.status); return (await r.json()).d; } },
+  { code:"b", name:"jsonblob", size:250000,
+    async put(c){ const r=await fetchT("https://jsonblob.com/api/jsonBlob",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({d:c})}); if(!r.ok) throw Error("HTTP "+r.status); const id=(r.headers.get("Location")||r.headers.get("x-jsonblob")||"").split("/").pop(); if(!id) throw Error("sem id"); return id; },
+    async get(id){ const r=await fetchT("https://jsonblob.com/api/jsonBlob/"+id); if(!r.ok) throw Error("HTTP "+r.status); return (await r.json()).d; } }
+];
+
+async function pool(n, total, fn){ let i=0; await Promise.all(Array.from({length:Math.min(n,total)},async()=>{ while(i<total){ const k=i++; await fn(k); } })); }
+
+async function upload(token, onP){
+  const errs=[];
+  for (const p of PROVIDERS){
+    try{
+      const chunks=[]; for(let i=0;i<token.length;i+=p.size) chunks.push(token.slice(i,i+p.size));
+      const ids=new Array(chunks.length); let done=0;
+      onP(0, chunks.length, p.name);
+      await pool(3, chunks.length, async k=>{
+        let last; for(let t=0;t<3;t++){ try{ ids[k]=await p.put(chunks[k]); break; }catch(e){ last=e; await new Promise(r=>setTimeout(r,700*(t+1))); } }
+        if(!ids[k]) throw last||Error("falhou");
+        onP(++done, chunks.length, p.name);
+      });
+      // verifica o 1º bloco (garante que dá pra ler de volta via CORS)
+      const back = await p.get(ids[0]);
+      if (back !== chunks[0]) throw Error("verificação falhou");
+      return { ref:p.code+"~"+ids.join("~"), provider:p.name, parts:ids.length };
+    }catch(e){ errs.push(p.name+": "+(e.message||e)); }
+  }
+  throw Error(errs.join(" | "));
+}
+async function download(code, ids, onP){
+  const p=PROVIDERS.find(x=>x.code===code); if(!p) throw Error("provedor desconhecido");
+  const out=new Array(ids.length); let done=0;
+  await pool(4, ids.length, async k=>{ out[k]=await p.get(ids[k]); onP(++done, ids.length); });
+  return out.join("");
+}
+
+/* ---------- rota ---------- */
+function parseIncoming(){
+  const raw = new URLSearchParams(location.search).get("l") || (location.hash ? location.hash.slice(1) : "");
+  if (!raw || raw.length<2) return null;
+  const flags={mask:0}; let body=raw;
+  const dot=raw.indexOf(".");
+  if (dot>0 && /^[ci]\d*k?f?$/.test(raw.slice(0,dot))){ const m=raw.slice(1,dot).match(/^\d+/); flags.mask=m?+m[0]:0; body=raw.slice(dot+1); }
+  const cm = body.match(/^([prdjbf])~([A-Za-z0-9_~-]+)$/);
+  if (cm) return {flags, type:"cloud", code:cm[1], ids:cm[2].split("~").filter(Boolean)};
+  return {flags, type:"inline", token:body};
+}
+
+/* ---------- disfarces ---------- */
+const fav = d => "https://www.google.com/s2/favicons?sz=64&domain="+d;
+const MASKS = [
+  {id:0,name:"Nenhum — about:blank puro",title:"",icon:""},
+  {id:1,name:"Google Docs",title:"Documento sem título - Google Docs",icon:fav("docs.google.com")},
+  {id:2,name:"Google Classroom",title:"Início - Google Sala de Aula",icon:fav("classroom.google.com")},
+  {id:3,name:"Google Drive",title:"Meu Drive - Google Drive",icon:fav("drive.google.com")},
+  {id:4,name:"Google Slides",title:"Apresentação sem título - Google Apresentações",icon:fav("docs.google.com")},
+  {id:5,name:"Google Sheets",title:"Planilha sem título - Google Planilhas",icon:fav("docs.google.com")},
+  {id:6,name:"Desmos",title:"Desmos | Calculadora gráfica",icon:fav("desmos.com")},
+  {id:7,name:"Khan Academy",title:"Painel | Khan Academy",icon:fav("pt.khanacademy.org")},
+  {id:8,name:"Personalizado…",title:"",icon:""}
+];
+const resolveMask = (f, meta) => f.mask===8 && meta ? {title:meta.t||"",icon:meta.i||""} : (MASKS[f.mask]||MASKS[0]);
+
+function prepareDoc(html, mask){
+  let inj="";
+  if (mask.title||mask.icon){
+    const cfg=JSON.stringify({t:mask.title||"",i:mask.icon||""}).replace(/<\//g,"<\\/");
+    inj="<script>(function(c){function a(){if(c.t&&document.title!==c.t)document.title=c.t;if(c.i){var l=document.querySelector(\"link[rel*='icon']\");if(!l){l=document.createElement('link');l.rel='icon';(document.head||document.documentElement).appendChild(l);}if(l.href!==c.i)l.href=c.i;}}a();document.addEventListener('DOMContentLoaded',a);setInterval(a,1500);})("+cfg+");<\/script>";
+  }
+  const head=html.slice(0,2048).toLowerCase();
+  if (head.includes("<!doctype")||head.includes("<html")){
+    if(!inj) return html;
+    const off=Math.max(0,html.length-65536), tail=html.slice(off).toLowerCase(), b=tail.lastIndexOf("</body>");
+    return b!==-1 ? html.slice(0,off+b)+inj+html.slice(off+b) : html+inj;
+  }
+  return "<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>"+esc(mask.title||"about:blank")+"</title></head><body>"+html+inj+"</body></html>";
+}
+
+function makeDataUrl(token, maskTitle){
+  const safeTitle = (maskTitle || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+  const stub =
+    '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + safeTitle + '</title>' +
+    '<style>html,body{margin:0;height:100%;background:#fff;color:#111;font:600 17px system-ui,sans-serif}' +
+    '#g{display:grid;place-items:center;height:100vh;cursor:pointer;user-select:none}</style></head>' +
+    '<body><div id="g">Clique na tela para começar.</div>' +
+    '<script>(function(){' +
+      'var B=' + JSON.stringify(token) + ';' +
+      /* ---- apaga ESTA aba: sempre termina em about:blank ---- */
+      'function vanish(){' +
+        'try{document.documentElement.innerHTML=""}catch(e){}' +
+        'try{document.title=" "}catch(e){}' +
+        'var n=0;' +
+        '(function t(){n++;' +
+          'try{window.open("","_self")}catch(e){}' +
+          'try{window.close()}catch(e){}' +
+          'if(window.closed)return;' +
+          'try{location.replace("about:blank");return}catch(e){}' +
+          'try{location.href="about:blank";return}catch(e){}' +
+          'if(n<60)setTimeout(t,100);' +
+        '})();' +
+      '}' +
+      'function boot(){' +
+        'var s=B.slice(1).replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";' +
+        'var t=atob(s),u=new Uint8Array(t.length);for(var i=0;i<t.length;i++)u[i]=t.charCodeAt(i);' +
+        'return B[0]==="z"?new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text():Promise.resolve(new TextDecoder().decode(u));' +
+      '}' +
+      'function go(h){' +
+        'var w=null;try{w=window.open("about:blank","_blank")}catch(e){}' +
+        'if(!w)return false;' +
+        'try{w.document.open();w.document.write(h);w.document.close()}catch(e){return false}' +
+        'try{w.focus()}catch(e){}' +
+        'vanish();' +
+        'return true;' +
+      '}' +
+      'boot().then(function(h){' +
+        'if(go(h))return;' +
+        'var cl=function(){ if(go(h))return; try{document.open();document.write(h);document.close()}catch(e){} };' +
+        'var g=document.getElementById("g"); if(g)g.onclick=cl;' +
+        'document.addEventListener("click",function(){cl();});' +
+        'document.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();cl();}});' +
+      '}).catch(function(e){var g=document.getElementById("g");if(g)g.textContent="Erro: "+e;});' +
+    '})();<\/script></body></html>';
+  return "data:text/html;charset=utf-8," + encodeURIComponent(stub);
+}
+
+function openBlank(html, mask){
+  let w=null; try{ w=window.open("about:blank","_blank"); }catch(_){}
+  if(!w) return false;
+  try{ w.document.open(); w.document.write(prepareDoc(html,mask)); w.document.close(); }catch(_){ return false; }
+  try{ w.focus(); }catch(_){}
+  return true;
+}
+function closeSelf(){
+  try{ history.replaceState(null,"",location.pathname); }catch(_){}
+  try{ document.documentElement.innerHTML = ""; }catch(_){}
+  setTimeout(function(){
+    var n = 0;
+    (function t(){
+      n++;
+      try{ window.open("","_self"); }catch(_){}
+      try{ window.close(); }catch(_){}
+      if (window.closed) return;
+      try{ location.replace("about:blank"); return; }catch(_){}
+      try{ location.href = "about:blank"; return; }catch(_){}
+      if (n < 60) setTimeout(t, 100);
+    })();
+  }, 80);
+}
+
+/* ---------- VIEWER ---------- */
+async function startViewer(route){
+  document.documentElement.setAttribute("data-mode","view");
+  const bar=$("#vBar");
+  try{
+    let token;
+    if (route.type==="cloud"){
+      token = await download(route.code, route.ids, (d,t)=>bar.style.width=(15+d/t*70)+"%");
+      // link direto → vira o link maior (2ª camada) e segue pro about:blank
+      try{ history.replaceState(null,"",cleanBase()+"#"+(location.search.match(/l=([ci]\d*k?f?\.)/)||[,""])[1]+token); }catch(_){}
+    } else token = route.token;
+    bar.style.width="92%";
+    const {html, meta} = await decodePayload(token);
+    const mask = resolveMask(route.flags, meta);
+    if (mask.title) document.title = mask.title;
+
+    if (openBlank(html, mask)){ closeSelf(); return; }
+
+    $("#vLoad").classList.add("hidden");
+    $("#vReady").classList.remove("hidden");
+    const go = () => { if (openBlank(html, mask)){ $("#viewer").removeEventListener("click",go); window.removeEventListener("keydown",go); closeSelf(); } else toast("Pop-up bloqueado — libere pop-ups pra esse site.",true); };
+    $("#viewer").addEventListener("click", go);
+    window.addEventListener("keydown", go);
+  }catch(e){
+    $("#vLoad").classList.add("hidden"); $("#vErr").classList.remove("hidden");
+    $("#vErrTxt").textContent = e && e.message ? e.message : "";
+  }
+}
+
+/* ---------- IndexedDB ---------- */
+function idb(){ return new Promise((res,rej)=>{ const r=indexedDB.open("linkador_db",2); r.onupgradeneeded=()=>{ const db=r.result; if(!db.objectStoreNames.contains("kv")) db.createObjectStore("kv"); }; r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error); }); }
+async function kvGet(k){ try{ const db=await idb(); return await new Promise(r=>{ const g=db.transaction("kv").objectStore("kv").get(k); g.onsuccess=()=>r(g.result); g.onerror=()=>r(null); }); }catch(_){ return null; } }
+async function kvSet(k,v){ try{ const db=await idb(); db.transaction("kv","readwrite").objectStore("kv").put(v,k); }catch(_){} }
+
+/* ---------- encurtador ---------- */
+function jsonp(ep, url){ return new Promise((res,rej)=>{ const cb="__lk"+Math.random().toString(36).slice(2), s=document.createElement("script"); const t=setTimeout(()=>{done();rej(Error("timeout"));},8000); function done(){clearTimeout(t);delete window[cb];s.remove();} window[cb]=d=>{done(); d&&d.shorturl?res(d.shorturl):rej(Error((d&&d.errormessage)||"recusado"));}; s.onerror=()=>{done();rej(Error("bloqueado"));}; s.src=ep+"?format=json&callback="+cb+"&url="+encodeURIComponent(url); document.head.appendChild(s); }); }
+async function shorten(url){
+  for (const ep of ["https://is.gd/create.php","https://v.gd/create.php"]){ try{ return await jsonp(ep,url); }catch(_){} }
+  try{ const r=await fetchT("https://spoo.me/",{method:"POST",headers:{"Accept":"application/json","Content-Type":"application/x-www-form-urlencoded"},body:"url="+encodeURIComponent(url)},9000); const d=await r.json(); if(d.short_url) return d.short_url; }catch(_){}
+  return null;
+}
+
+/* ---------- EDITOR ---------- */
+const BIG = 3*1024*1024;
+async function initEditor(){
+  let big=null, links=(await kvGet("links"))||[], sel=new Set();
+  const getHtml = () => big!==null ? big : $("#code").value;
+  const st = (m,err) => { $("#st").textContent=m; $("#st").className="mt-2 min-h-[1.2rem] text-xs "+(err?"text-rose-400":"text-slate-400"); };
+  const prog = p => $("#prog").style.width=p+"%";
+  const stats = () => { const s=getHtml(); $("#stats").textContent=lines(s).toLocaleString("pt-BR")+" linhas • "+fmtB(new Blob([s]).size); };
+
+  function setHtml(t){
+    if (t.length>BIG){ big=t; $("#code").value=t.slice(0,6000)+"\n\n/* … resto guardado na memória … */"; $("#code").readOnly=true; $("#bigNote").classList.remove("hidden"); $("#bigNote").textContent="Arquivo gigante carregado na memória ("+lines(t).toLocaleString("pt-BR")+" linhas). Pronto pra criar o link."; }
+    else { big=null; $("#code").readOnly=false; $("#code").value=t; $("#bigNote").classList.add("hidden"); }
+    stats();
+  }
+
+  const IN_ARENA = (() => {
+    try { if (window.self !== window.top) return true; } catch (_) { return true; }
+    return /^(about|blob|data):/.test(location.protocol) || /arena/i.test(location.hostname);
+  })();
+  if (IN_ARENA) $("#arenaBanner").classList.remove("hidden");
+
+  $("#dlApp").onclick = () => {
+    const clone = document.documentElement.cloneNode(true);
+    clone.removeAttribute("data-mode");
+    const ab = clone.querySelector("#arenaBanner"); if (ab) ab.classList.add("hidden");
+    const ls = clone.querySelector("#list"); if (ls) ls.innerHTML = "";
+    const cEl = clone.querySelector("#code"); if (cEl) { cEl.textContent = "<!DOCTYPE html>\n<html><head><meta charset=\"utf-8\"><title>Oi</title></head>\n<body style=\"font-family:sans-serif;display:grid;place-items:center;height:100vh;margin:0\">\n<h1>Funcionou 🎉</h1>\n</body></html>"; cEl.removeAttribute("readonly"); }
+    ["#outShort","#outLong","#hostUrl","#name"].forEach(s => { const el = clone.querySelector(s); if (el) el.removeAttribute("value"); });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob(["<!DOCTYPE html>\n" + clone.outerHTML], { type: "text/html;charset=utf-8" }));
+    a.download = "Linkador.html";
+    a.click();
+    toast("Linkador.html baixado ✅");
+  };
+
+  $("#mask").innerHTML = MASKS.map(m=>`<option value="${m.id}">${m.name}</option>`).join("");
+  try{
+    const c=JSON.parse(localStorage.getItem("linkador_cfg")||"{}");
+    if(c.mask!=null) $("#mask").value=c.mask;
+    $("#cTitle").value=c.cTitle||""; $("#cIcon").value=c.cIcon||"";
+    $("#hostUrl").value=c.hostUrl||(!IN_ARENA && /^https?:/.test(location.protocol) ? cleanBase() : "");
+  }catch(_){}
+  const syncMask = () => {
+    $("#customBox").classList.toggle("hidden",$("#mask").value!=="8");
+    localStorage.setItem("linkador_cfg",JSON.stringify({mask:$("#mask").value,cTitle:$("#cTitle").value,cIcon:$("#cIcon").value,hostUrl:$("#hostUrl").value.trim()}));
+  };
+  ["#mask","#cTitle","#cIcon","#hostUrl"].forEach(s=>$(s).addEventListener("input",syncMask)); $("#mask").onchange=syncMask; syncMask();
+
+  const draft=await kvGet("draft"); if(typeof draft==="string" && draft) setHtml(draft); else stats();
+  let tm; $("#code").addEventListener("input",()=>{ if(big!==null) return; clearTimeout(tm); tm=setTimeout(()=>{ stats(); kvSet("draft",getHtml()); },300); });
+
+  function loadFile(f){ const r=new FileReader(); r.onload=()=>{ setHtml(String(r.result||"")); kvSet("draft",getHtml()); st("Arquivo carregado: "+f.name); }; r.readAsText(f,"utf-8"); }
+  $("#importBtn").onclick=()=>$("#fileIn").click();
+  $("#fileIn").onchange=e=>{ if(e.target.files[0]) loadFile(e.target.files[0]); e.target.value=""; };
+  $("#clearBtn").onclick=()=>{ setHtml(""); kvSet("draft",""); };
+  const dz=$("#dropZone");
+  dz.addEventListener("dragover",e=>{e.preventDefault();dz.classList.add("drop");});
+  dz.addEventListener("dragleave",()=>dz.classList.remove("drop"));
+  dz.addEventListener("drop",e=>{e.preventDefault();dz.classList.remove("drop"); const f=e.dataTransfer.files[0]; if(f) loadFile(f);});
+
+  document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=async()=>{ const v=$("#"+b.dataset.copy).value; if(v && await copyText(v)) toast("Copiado ✅"); });
+
+  /* ---- Criar link direto ---- */
+  $("#create").onclick = async () => {
+    const html=getHtml(); if(!html.trim()) return st("Cola algum HTML primeiro.",true);
+    $("#create").disabled=true;
+    try{
+      const mask=+$("#mask").value||0;
+      const meta = mask===8 ? {t:$("#cTitle").value.trim(), i:$("#cIcon").value.trim()} : null;
+      const prefix="c"+(mask||"")+"k.";
+      st("Comprimindo "+lines(html).toLocaleString("pt-BR")+" linhas…"); prog(10);
+      const {token, comp} = await encodePayload(html, meta);
+
+      const extBase = ($("#hostUrl").value || "").trim().split("#")[0].split("?")[0];
+      const hasRealHost = /^https?:\/\/.+/.test(extBase) || (!IN_ARENA && /^file:/.test(location.protocol));
+      const targetBase = hasRealHost ? (extBase || cleanBase()) : cleanBase();
+
+      // O site vira o link maior na barra de endereço (só quando não está na Arena/iframe)
+      const hashLong = cleanBase()+"#"+prefix+token;
+      if (!IN_ARENA && hashLong.length < 1800000 && /^https?:|^file:/.test(location.protocol)) {
+        try{ history.replaceState(null,"",hashLong); }catch(_){}
+      }
+
+      const maskObj = resolveMask({mask}, meta ? {t:meta.t,i:meta.i} : null);
+      const inArenaNoHost = !hasRealHost && IN_ARENA;
+
+      // LINK MAIOR: na Arena sem host, usa data:text/html auto-apagador (nunca cai na Arena / Linkador)
+      let longUrl;
+      if (inArenaNoHost) {
+        const packed = await encodePayload(prepareDoc(html, maskObj), null);
+        longUrl = makeDataUrl(packed.token, maskObj.title);
+      } else {
+        longUrl = targetBase+"#"+prefix+token;
+      }
+      $("#outLong").value=longUrl; $("#longLen").textContent="("+longUrl.length.toLocaleString("pt-BR")+" caracteres)";
+
+      // LINK DIRETO (curto) → leva ao link maior → about:blank
+      let shortUrl="", via="";
+      if (inArenaNoHost) {
+        // não gera link apontando pra Arena (cairia no Linkador). Tenta encurtar o data: e cai pro próprio data:.
+        st("Tentando encurtar o link…"); prog(60);
+        shortUrl = (/^https?:/.test(location.protocol) && await shorten(longUrl)) || longUrl;
+        via = shortUrl === longUrl ? "data: direto (sem encurtador)" : "encurtador";
+        st("Pronto — abre em about:blank ✅ " + (shortUrl === longUrl ? "(sem encurtar: encurtadores recusam links data:; hospede o Linkador pra gerar curto)" : ""));
+      } else if (/^https?:/.test(targetBase) && token.length < 1500) {
+        st("Encurtando…"); prog(60);
+        shortUrl = (await shorten(longUrl)) || longUrl;
+        via = "hash na URL";
+      } else if (/^https?:/.test(targetBase)) {
+        prog(20);
+        const up = await upload(token,(d,t,n)=>{ prog(20+Math.round(d/t*65)); st("Enviando "+fmtB(comp)+" via "+n+" — bloco "+d+"/"+t+"…"); });
+        const mid = targetBase+"?l="+prefix+up.ref;
+        st("Encurtando…"); prog(90);
+        shortUrl = (await shorten(mid)) || mid;
+        via = up.provider+" ("+up.parts+" bloco"+(up.parts>1?"s":"")+")";
+        st("Pronto via "+via+" ✅");
+      } else {
+        shortUrl = longUrl;
+      }
+      prog(100);
+      $("#outShort").value=shortUrl;
+
+      const ok = await copyText(shortUrl+"\n"+longUrl);
+      toast(ok?"Link direto + link maior copiados ✅":"Copie manualmente", !ok);
+      if (!$("#st").textContent) st("Pronto.");
+
+      links.unshift({ id:Date.now()+"", name:$("#name").value.trim()||"Link "+(links.length+1), date:Date.now(), short:shortUrl, long:longUrl, html, mask, meta, lines:lines(html), size:comp });
+      await kvSet("links",links); render();
+    }catch(e){
+      prog(0);
+      st("Link maior criado, mas o link direto falhou: "+(e.message||e),true);
+      const lu=$("#outLong").value; if(lu){ await copyText(lu); toast("Link maior copiado"); }
+    }finally{ $("#create").disabled=false; setTimeout(()=>prog(0),1500); }
+  };
+
+  /* ---- Editor de links ---- */
+  const visible = () => { const q=$("#search").value.toLowerCase(); return links.filter(l=>!q||l.name.toLowerCase().includes(q)||l.short.toLowerCase().includes(q)); };
+  const picked = () => links.filter(l=>sel.has(l.id));
+  function render(){
+    const v=visible();
+    $("#cnt").textContent="("+links.length+")";
+    $("#selInfo").textContent=sel.size?sel.size+" selecionado(s)":"";
+    $("#selAll").checked = v.length>0 && v.every(l=>sel.has(l.id));
+    $("#list").innerHTML = v.length ? v.map(l=>`
+      <div class="flex flex-wrap items-center gap-3 rounded-xl border border-white/5 bg-white/[.03] p-3 ${sel.has(l.id)?"ring-1 ring-indigo-500/60":""}">
+        <input type="checkbox" data-sel="${l.id}" ${sel.has(l.id)?"checked":""}>
+        <div class="min-w-0 flex-1">
+          <input data-name="${l.id}" value="${esc(l.name)}" class="w-full bg-transparent text-sm font-semibold text-white outline-none focus:text-indigo-200">
+          <div class="mono truncate text-xs text-indigo-300">${esc(l.short)}</div>
+          <div class="text-[11px] text-slate-500">${new Date(l.date).toLocaleString("pt-BR")} • ${l.lines.toLocaleString("pt-BR")} linhas • ${fmtB(l.size)} • maior: ${l.long.length.toLocaleString("pt-BR")} chars</div>
+        </div>
+        <div class="flex gap-1.5 text-xs">
+          <button data-a="cs" data-id="${l.id}" class="btn rounded-md bg-indigo-500 px-2 py-1 font-semibold text-white hover:bg-indigo-400">Direto</button>
+          <button data-a="cl" data-id="${l.id}" class="btn rounded-md bg-white/10 px-2 py-1 hover:bg-white/20">Maior</button>
+          <button data-a="op" data-id="${l.id}" class="btn rounded-md bg-white/10 px-2 py-1 hover:bg-white/20">Abrir</button>
+          <button data-a="rm" data-id="${l.id}" class="btn rounded-md bg-rose-500/20 px-2 py-1 text-rose-300 hover:bg-rose-500/30">✕</button>
+        </div>
+      </div>`).join("") : `<p class="py-6 text-center text-sm text-slate-500">Nenhum link ainda.</p>`;
+  }
+  $("#list").addEventListener("change",e=>{ const id=e.target.dataset.sel; if(id){ e.target.checked?sel.add(id):sel.delete(id); render(); } });
+  $("#list").addEventListener("input",e=>{ const id=e.target.dataset.name; if(id){ const l=links.find(x=>x.id===id); l.name=e.target.value; kvSet("links",links); } });
+  $("#list").addEventListener("click",async e=>{
+    const b=e.target.closest("[data-a]"); if(!b) return; const l=links.find(x=>x.id===b.dataset.id); if(!l) return;
+    if(b.dataset.a==="cs"){ await copyText(l.short); toast("Direto copiado ✅"); }
+    if(b.dataset.a==="cl"){ await copyText(l.long); toast("Maior copiado ✅"); }
+    if(b.dataset.a==="op"){
+      const extBase = ($("#hostUrl").value || "").trim();
+      if (l.html && (!extBase && IN_ARENA || l.short.startsWith("data:"))) {
+        if (!openBlank(l.html, resolveMask({mask:l.mask||0}, l.meta))) toast("Pop-up bloqueado!", true);
+      } else {
+        window.open(l.short,"_blank");
+      }
+    }
+    if(b.dataset.a==="rm"){ links=links.filter(x=>x!==l); sel.delete(l.id); await kvSet("links",links); render(); }
+  });
+  $("#search").oninput=render;
+  $("#selAll").onchange=e=>{ visible().forEach(l=>e.target.checked?sel.add(l.id):sel.delete(l.id)); render(); };
+  $("#selNone").onclick=()=>{ sel.clear(); render(); };
+  $("#selInv").onclick=()=>{ visible().forEach(l=>sel.has(l.id)?sel.delete(l.id):sel.add(l.id)); render(); };
+  const need = () => { const p=picked(); if(!p.length) toast("Selecione algum link",true); return p; };
+  $("#cpShort").onclick=async()=>{ const p=need(); if(p.length){ await copyText(p.map(l=>l.short).join("\n")); toast(p.length+" link(s) direto(s) copiado(s) ✅"); } };
+  $("#cpLong").onclick=async()=>{ const p=need(); if(p.length){ await copyText(p.map(l=>l.long).join("\n")); toast(p.length+" link(s) maior(es) copiado(s) ✅"); } };
+  $("#cpBoth").onclick=async()=>{ const p=need(); if(p.length){ await copyText(p.map(l=>l.name+"\n"+l.short+"\n"+l.long).join("\n\n")); toast("Copiado ✅"); } };
+  $("#exp").onclick=()=>{ const p=picked().length?picked():links; if(!p.length) return toast("Nada pra exportar",true); const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([p.map(l=>l.name+"\nDireto: "+l.short+"\nMaior: "+l.long).join("\n\n")],{type:"text/plain"})); a.download="links.txt"; a.click(); };
+  $("#del").onclick=async()=>{ const p=need(); if(!p.length||!confirm("Excluir "+p.length+" link(s)?")) return; links=links.filter(l=>!sel.has(l.id)); sel.clear(); await kvSet("links",links); render(); };
+  render();
+}
+
+/* ---------- boot ---------- */
+const route = parseIncoming();
+if (route) startViewer(route); else initEditor();
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;cfb6543e268d4ceb92c8170675caa481&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
+
+
+</body></html>
